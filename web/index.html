@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NovaPi Store — Operations Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ── Header ───────────────────────────────────────────────────── -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <span class="logo">NovaPi Store</span>
+      <span class="badge">Operations Dashboard</span>
+    </div>
+    <div class="topbar-right">
+      <span id="clock"></span>
+      <span id="date-display"></span>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ── KPI Cards ─────────────────────────────────────────────── -->
+    <section class="kpi-grid">
+      <div class="card kpi">
+        <div class="kpi-label">Today's Revenue</div>
+        <div class="kpi-value" id="kpi-revenue">$0.00</div>
+        <div class="kpi-delta positive" id="kpi-revenue-delta">↑ 0%</div>
+      </div>
+      <div class="card kpi">
+        <div class="kpi-label">Transactions</div>
+        <div class="kpi-value" id="kpi-txns">0</div>
+        <div class="kpi-delta positive" id="kpi-txns-delta">↑ 0%</div>
+      </div>
+      <div class="card kpi">
+        <div class="kpi-label">Avg. Order Value</div>
+        <div class="kpi-value" id="kpi-aov">$0.00</div>
+        <div class="kpi-delta neutral" id="kpi-aov-delta">→ 0%</div>
+      </div>
+      <div class="card kpi">
+        <div class="kpi-label">Items Sold</div>
+        <div class="kpi-value" id="kpi-items">0</div>
+        <div class="kpi-delta negative" id="kpi-items-delta">↓ 0%</div>
+      </div>
+    </section>
+
+    <!-- ── Middle row: Chart + Staff ─────────────────────────────── -->
+    <section class="mid-grid">
+
+      <!-- Hourly Sales Chart -->
+      <div class="card chart-card">
+        <div class="card-header">
+          <h2>Hourly Sales</h2>
+          <span class="subtitle">Today · USD</span>
+        </div>
+        <div class="chart-wrapper">
+          <div class="chart" id="hourly-chart"></div>
+          <div class="chart-labels" id="chart-labels"></div>
+        </div>
+      </div>
+
+      <!-- Staff on Duty -->
+      <div class="card staff-card">
+        <div class="card-header">
+          <h2>Staff on Duty</h2>
+          <span class="staff-count" id="staff-count">0 active</span>
+        </div>
+        <ul class="staff-list" id="staff-list"></ul>
+      </div>
+
+    </section>
+
+    <!-- ── Bottom row: Recent Txns + Inventory ───────────────────── -->
+    <section class="bottom-grid">
+
+      <!-- Recent Transactions -->
+      <div class="card">
+        <div class="card-header">
+          <h2>Recent Transactions</h2>
+          <button class="btn-outline" onclick="refreshTransactions()">Refresh</button>
+        </div>
+        <table class="data-table" id="txn-table">
+          <thead>
+            <tr>
+              <th>Order #</th>
+              <th>Time</th>
+              <th>Items</th>
+              <th>Cashier</th>
+              <th>Total</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="txn-body"></tbody>
+        </table>
+      </div>
+
+      <!-- Inventory Alerts -->
+      <div class="card">
+        <div class="card-header">
+          <h2>Inventory Alerts</h2>
+          <span class="badge-red" id="alert-count">0 low</span>
+        </div>
+        <table class="data-table" id="inv-table">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>SKU</th>
+              <th>Stock</th>
+              <th>Threshold</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="inv-body"></tbody>
+        </table>
+      </div>
+
+    </section>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
